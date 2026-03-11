@@ -758,6 +758,8 @@
             border-radius: 30px;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            max-width: 400px;   /* <--- reduced image size */
+            margin: 0 auto;      /* centered if parent allows */
         }
 
         .ceo-image img {
@@ -849,6 +851,74 @@
             color: #64748b;
             font-size: 0.9rem;
             font-weight: 400;
+        }
+
+        /* ===== FREE DELIVERY SECTION (NEW) ===== */
+        .delivery-section {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            padding: 30px 0;
+            border-bottom: 1px solid #7dd3fc;
+        }
+
+        .delivery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .delivery-icon {
+            background: #0284c7;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.3);
+        }
+
+        .delivery-text h3 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #0369a1;
+            margin-bottom: 5px;
+        }
+
+        .delivery-text p {
+            font-size: 1.1rem;
+            color: #075985;
+            font-weight: 500;
+        }
+
+        .delivery-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-left: 10px;
+        }
+
+        .area-tag {
+            background: white;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #0284c7;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #bae6fd;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .area-tag i {
+            color: #f59e0b;
         }
 
         /* ===== PAYMENT METHODS SECTION ===== */
@@ -1619,6 +1689,14 @@
             .suggestion-price {
                 font-size: 1rem;
             }
+
+            .delivery-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .delivery-areas {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1755,6 +1833,28 @@
         </div>
     </section>
 
+    <!-- NEW FREE DELIVERY SECTION (added without changing anything else) -->
+    <section class="delivery-section">
+        <div class="delivery-container">
+            <div class="delivery-icon">
+                <i class="fas fa-truck"></i>
+            </div>
+            <div class="delivery-text">
+                <h3>🚚 Free Delivery in Moshi</h3>
+                <p>We deliver for free to these areas:</p>
+            </div>
+            <div class="delivery-areas">
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Majengo</span>
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Soweto</span>
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Bondeni</span>
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Kati</span>
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Karanga</span>
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Kiboriloni</span>
+                <span class="area-tag"><i class="fas fa-location-dot"></i> Pasua</span>
+            </div>
+        </div>
+    </section>
+
     <!-- Filters -->
     <section class="filters">
         <div class="container">
@@ -1807,7 +1907,7 @@
         </div>
     </section>
 
-    <!-- CEO Section -->
+    <!-- CEO Section (image size reduced via css max-width) -->
     <section class="ceo-section" id="ceo">
         <div class="container">
             <div class="ceo-wrapper">
