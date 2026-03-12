@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -740,122 +740,9 @@
             border-color: #2563eb;
         }
 
-        /* ===== CEO SECTION (image size reduced further) ===== */
-        .ceo-section {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .ceo-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .ceo-image {
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            max-width: 320px;   /* smaller image */
-            margin: 0 auto;
-        }
-
-        .ceo-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .ceo-badge {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: white;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ceo-badge i {
-            color: #f59e0b;
-        }
-
-        .ceo-name {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
-
-        .ceo-title {
-            color: #2563eb;
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .ceo-description {
-            color: #64748b;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .ceo-contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .contact-item i {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #2563eb;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-        }
-
-        .contact-item div {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #1e293b;
-        }
-
-        .contact-item small {
-            display: block;
-            color: #64748b;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
         /* ===== PAYMENT METHODS SECTION ===== */
         .payment-section {
-            padding: 60px 0 30px;  /* reduced bottom padding to make room for delivery */
+            padding: 60px 0 30px;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
@@ -996,9 +883,9 @@
             width: 20px;
         }
 
-        /* ===== FREE DELIVERY SECTION (now below payment) ===== */
+        /* ===== FREE DELIVERY SECTION ===== */
         .delivery-section {
-            background: #0f172a;  /* dark background to separate */
+            background: #0f172a;
             padding: 35px 20px;
             text-align: center;
             border-top: 4px solid #f59e0b;
@@ -1048,6 +935,119 @@
             font-size: 1.1rem;
             border: 1px solid #f59e0b;
             margin-top: 10px;
+        }
+
+        /* ===== CEO SECTION (now moved after free delivery) ===== */
+        .ceo-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .ceo-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .ceo-image {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .ceo-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .ceo-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ceo-badge i {
+            color: #f59e0b;
+        }
+
+        .ceo-name {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .ceo-title {
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ceo-description {
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .ceo-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+        }
+
+        .contact-item div {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1e293b;
+        }
+
+        .contact-item small {
+            display: block;
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 400;
         }
 
         /* ===== WHATSAPP SECTION ===== */
@@ -1867,55 +1867,6 @@
         </div>
     </section>
 
-    <!-- CEO Section (image size reduced) -->
-    <section class="ceo-section" id="ceo">
-        <div class="container">
-            <div class="ceo-wrapper">
-                <div class="ceo-image">
-                    <img src="Images/ceo/derick-sungi.jpg" 
-                         alt="Derick Daniel Sungi" 
-                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Derick+Daniel+Sungi&size=500&background=2563eb&color=fff&bold=true&length=2'">
-                    <div class="ceo-badge">
-                        <i class="fas fa-crown"></i> Owner & Businessman
-                    </div>
-                </div>
-                <div>
-                    <h2 class="ceo-name">Derick Daniel Sungi</h2>
-                    <p class="ceo-title">
-                        <i class="fas fa-briefcase"></i> Businessman | Entrepreneur | Moshi, Tanzania
-                    </p>
-                    <p class="ceo-description">
-                        Founder of KD Enterprises, bringing quality electronics and furniture to businesses and families across Tanzania. Based in Moshi, at the foot of Mount Kilimanjaro. With over 3 years of experience in business and a deep understanding of the local market, Derick personally ensures that every product meets the highest standards of quality and value.
-                    </p>
-                    
-                    <div class="ceo-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                0748 814 017
-                                <small>Phone</small>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                dericksungi65@gmail.com
-                                <small>Email</small>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                Moshi, Tanzania
-                                <small>Headquarters</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- PAYMENT METHODS SECTION -->
     <section class="payment-section" id="payment">
         <div class="container">
@@ -1990,7 +1941,7 @@
         </div>
     </section>
 
-    <!-- FREE DELIVERY SECTION (now below payment methods) -->
+    <!-- FREE DELIVERY SECTION -->
     <section class="delivery-section">
         <div class="delivery-content">
             <div class="delivery-icon">
@@ -2001,7 +1952,56 @@
                 <p>We deliver for free in areas around Moshi</p>
             </div>
             <div class="delivery-note">
-                <i class="fas fa-map-pin"></i> KCMC • Majengo • Soweto • Bondeni • Kati • Karanga • Kiboriloni • Pasua
+                <i class="fas fa-map-pin"></i> Majengo • Soweto • Bondeni • Kati • Karanga • Kiboriloni • Pasua
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO SECTION (moved below free delivery) -->
+    <section class="ceo-section" id="ceo">
+        <div class="container">
+            <div class="ceo-wrapper">
+                <div class="ceo-image">
+                    <img src="Images/ceo/derick-sungi.jpg" 
+                         alt="Derick Daniel Sungi" 
+                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Derick+Daniel+Sungi&size=500&background=2563eb&color=fff&bold=true&length=2'">
+                    <div class="ceo-badge">
+                        <i class="fas fa-crown"></i> Owner & Businessman
+                    </div>
+                </div>
+                <div>
+                    <h2 class="ceo-name">Derick Daniel Sungi</h2>
+                    <p class="ceo-title">
+                        <i class="fas fa-briefcase"></i> Businessman | Entrepreneur | Moshi, Tanzania
+                    </p>
+                    <p class="ceo-description">
+                        Founder of KD Enterprises, bringing quality electronics and furniture to businesses and families across Tanzania. Based in Moshi, at the foot of Mount Kilimanjaro. With over 3 years of experience in business and a deep understanding of the local market, Derick personally ensures that every product meets the highest standards of quality and value.
+                    </p>
+                    
+                    <div class="ceo-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                0748 814 017
+                                <small>Phone</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                dericksungi65@gmail.com
+                                <small>Email</small>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                Moshi, Tanzania
+                                <small>Headquarters</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2715,4 +2715,4 @@
         };
     </script>
 </body>
-</html>
+</html>              
