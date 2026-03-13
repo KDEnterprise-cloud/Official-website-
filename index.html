@@ -23,12 +23,16 @@
             color: #0f172a;
             line-height: 1.6;
             font-size: 16px;
+            overflow-x: hidden; /* Prevents horizontal scroll */
+            width: 100%;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
+            overflow-x: hidden; /* Prevents any child from overflowing */
         }
 
         /* ===== HEADER ===== */
@@ -40,6 +44,7 @@
             z-index: 100;
             backdrop-filter: blur(10px);
             background: rgba(255,255,255,0.98);
+            width: 100%;
         }
 
         .header .container {
@@ -53,6 +58,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-shrink: 0; /* Prevents logo from shrinking */
         }
 
         .logo i {
@@ -66,6 +72,7 @@
             background: linear-gradient(135deg, #2563eb, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            white-space: nowrap; /* Prevents text wrapping */
         }
 
         .logo span {
@@ -77,6 +84,7 @@
             display: flex;
             gap: 30px;
             list-style: none;
+            flex-wrap: wrap; /* Allows wrapping on small screens */
         }
 
         .nav-links a {
@@ -88,6 +96,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap; /* Prevents text wrapping */
         }
 
         .nav-links a i {
@@ -106,6 +115,7 @@
             font-size: 28px;
             color: #1e293b;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         /* ===== HERO SECTION ===== */
@@ -116,6 +126,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero::before {
@@ -132,6 +143,10 @@
         .hero .container {
             position: relative;
             z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
         }
 
         .hero-badge {
@@ -144,6 +159,8 @@
             font-size: 1rem;
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 100%;
+            white-space: nowrap;
         }
 
         .hero h2 {
@@ -152,6 +169,7 @@
             margin-bottom: 15px;
             letter-spacing: -0.02em;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            word-wrap: break-word;
         }
 
         .hero-subtitle {
@@ -159,6 +177,7 @@
             margin-bottom: 40px;
             opacity: 0.9;
             font-weight: 400;
+            word-wrap: break-word;
         }
 
         /* ===== SEARCH WRAPPER WITH SUGGESTIONS ===== */
@@ -167,6 +186,8 @@
             margin: 0 auto 30px;
             position: relative;
             overflow: visible !important;
+            width: 100%;
+            padding: 0 10px; /* Added padding to prevent edge touching */
         }
 
         .search-container {
@@ -179,6 +200,7 @@
             transition: all 0.3s;
             position: relative;
             z-index: 10;
+            width: 100%;
         }
 
         .search-container:focus-within {
@@ -190,6 +212,7 @@
             padding: 0 15px 0 25px;
             color: #94a3b8;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .search-input {
@@ -200,6 +223,7 @@
             outline: none;
             background: transparent;
             color: #1e293b;
+            min-width: 0; /* Allows input to shrink */
         }
 
         .search-input::placeholder {
@@ -222,6 +246,7 @@
             gap: 8px;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            flex-shrink: 0;
         }
 
         .search-button:hover {
@@ -243,8 +268,8 @@
         .suggestions-container {
             position: absolute;
             top: 100%;
-            left: 0;
-            right: 0;
+            left: 10px;
+            right: 10px;
             background: white;
             border-radius: 24px;
             margin-top: 10px;
@@ -318,10 +343,12 @@
             object-fit: cover;
             border-radius: 12px;
             background: #f1f5f9;
+            flex-shrink: 0;
         }
 
         .suggestion-info {
             flex: 1;
+            min-width: 0; /* Allows text to truncate */
         }
 
         .suggestion-name {
@@ -329,6 +356,9 @@
             color: #1e293b;
             margin-bottom: 4px;
             font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .suggestion-category {
@@ -342,6 +372,7 @@
         .suggestion-category i {
             font-size: 0.8rem;
             color: #f59e0b;
+            flex-shrink: 0;
         }
 
         .suggestion-price {
@@ -349,6 +380,8 @@
             color: #2563eb;
             font-size: 1.1rem;
             white-space: nowrap;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         .no-suggestions {
@@ -372,12 +405,14 @@
             gap: 12px;
             flex-wrap: wrap;
             margin-top: 20px;
+            padding: 0 10px;
         }
 
         .popular-label {
             color: rgba(255,255,255,0.7);
             font-size: 0.95rem;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .search-tag {
@@ -393,6 +428,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .search-tag:hover {
@@ -417,6 +453,8 @@
             border-radius: 60px;
             display: inline-flex;
             border: 1px solid rgba(255,255,255,0.1);
+            max-width: 100%;
+            flex-wrap: wrap;
         }
 
         .stat-item {
@@ -428,11 +466,13 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: #f59e0b;
+            white-space: nowrap;
         }
 
         .stat-label {
             font-size: 0.85rem;
             color: rgba(255,255,255,0.8);
+            white-space: nowrap;
         }
 
         .stat-divider {
@@ -448,6 +488,7 @@
             border-bottom: 1px solid #e2e8f0;
             position: relative;
             z-index: 5;
+            width: 100%;
         }
 
         .filters .container {
@@ -478,6 +519,7 @@
             align-items: center;
             gap: 10px;
             position: relative;
+            white-space: nowrap;
         }
 
         .filter-btn i {
@@ -584,6 +626,7 @@
             outline: none;
             cursor: pointer;
             background: white;
+            max-width: 100%;
         }
 
         /* ===== LOADING SKELETON ===== */
@@ -592,6 +635,7 @@
             border-radius: 24px;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            width: 100%;
         }
 
         .skeleton-image {
@@ -625,6 +669,7 @@
         /* ===== PRODUCTS GRID ===== */
         .products-section {
             padding: 50px 0;
+            width: 100%;
         }
 
         .section-title {
@@ -633,6 +678,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            word-wrap: break-word;
         }
 
         .products-grid {
@@ -640,6 +686,7 @@
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 50px;
+            width: 100%;
         }
 
         .product-card {
@@ -651,6 +698,7 @@
             cursor: pointer;
             border: 1px solid #e2e8f0;
             position: relative;
+            width: 100%;
         }
 
         /* FIXED NEW arrival badge for products - Now visible */
@@ -709,6 +757,7 @@
             font-weight: 700;
             margin-bottom: 10px;
             color: #1e293b;
+            word-wrap: break-word;
         }
 
         .product-price {
@@ -716,6 +765,7 @@
             font-weight: 700;
             color: #2563eb;
             margin-bottom: 8px;
+            word-wrap: break-word;
         }
 
         .product-price small {
@@ -735,6 +785,7 @@
             overflow: hidden;
             min-height: 42px;
             max-height: 42px;
+            word-wrap: break-word;
         }
 
         .buy-btn {
@@ -756,6 +807,7 @@
 
         .buy-btn i {
             font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
         .buy-btn:hover {
@@ -771,6 +823,7 @@
             gap: 20px;
             margin: 40px 0;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .page-btn {
@@ -788,6 +841,7 @@
             gap: 10px;
             min-width: 140px;
             justify-content: center;
+            white-space: nowrap;
         }
 
         .page-btn:hover:not(.disabled) {
@@ -809,6 +863,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            white-space: nowrap;
         }
 
         .page-info span {
@@ -822,6 +877,8 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .page-number {
@@ -852,6 +909,7 @@
         .payment-section {
             padding: 60px 0 30px;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            width: 100%;
         }
 
         .payment-title {
@@ -862,6 +920,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            word-wrap: break-word;
         }
 
         .payment-grid {
@@ -870,6 +929,7 @@
             gap: 30px;
             max-width: 1100px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .payment-card {
@@ -880,6 +940,7 @@
             transition: all 0.3s;
             border: 1px solid rgba(37, 99, 235, 0.1);
             text-align: center;
+            width: 100%;
         }
 
         .payment-card:hover {
@@ -898,12 +959,14 @@
             margin: 0 auto 20px;
             color: white;
             font-size: 32px;
+            flex-shrink: 0;
         }
 
         .payment-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: #1e293b;
+            word-wrap: break-word;
         }
 
         .merchant-number {
@@ -940,6 +1003,7 @@
             color: #2563eb;
             letter-spacing: 2px;
             margin-bottom: 8px;
+            word-wrap: break-word;
         }
 
         .copy-hint {
@@ -962,6 +1026,7 @@
             padding: 10px;
             background: #f8fafc;
             border-radius: 12px;
+            word-wrap: break-word;
         }
 
         .account-name strong {
@@ -969,6 +1034,7 @@
             display: block;
             margin-top: 5px;
             font-size: 1.2rem;
+            word-wrap: break-word;
         }
 
         .payment-features {
@@ -985,10 +1051,12 @@
             align-items: center;
             gap: 10px;
             color: #1e293b;
+            word-wrap: break-word;
         }
 
         .payment-features i {
             width: 20px;
+            flex-shrink: 0;
         }
 
         /* ===== FREE DELIVERY SECTION ===== */
@@ -997,6 +1065,7 @@
             padding: 35px 20px;
             text-align: center;
             border-top: 4px solid #f59e0b;
+            width: 100%;
         }
 
         .delivery-content {
@@ -1006,6 +1075,7 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
+            width: 100%;
         }
 
         .delivery-icon {
@@ -1019,6 +1089,7 @@
             justify-content: center;
             font-size: 32px;
             box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+            flex-shrink: 0;
         }
 
         .delivery-text h3 {
@@ -1026,12 +1097,14 @@
             font-weight: 700;
             color: white;
             margin-bottom: 8px;
+            word-wrap: break-word;
         }
 
         .delivery-text p {
             font-size: 1.2rem;
             color: #cbd5e1;
             font-weight: 400;
+            word-wrap: break-word;
         }
 
         .delivery-note {
@@ -1043,12 +1116,14 @@
             font-size: 1.1rem;
             border: 1px solid #f59e0b;
             margin-top: 10px;
+            word-wrap: break-word;
         }
 
         /* ===== CEO SECTION ===== */
         .ceo-section {
             padding: 80px 0;
             background: white;
+            width: 100%;
         }
 
         .ceo-wrapper {
@@ -1065,6 +1140,7 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.1);
             max-width: 320px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .ceo-image img {
@@ -1086,6 +1162,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
         }
 
         .ceo-badge i {
@@ -1097,6 +1174,7 @@
             font-weight: 800;
             color: #1e293b;
             margin-bottom: 10px;
+            word-wrap: break-word;
         }
 
         .ceo-title {
@@ -1107,6 +1185,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            word-wrap: break-word;
         }
 
         .ceo-description {
@@ -1114,6 +1193,7 @@
             margin-bottom: 30px;
             line-height: 1.8;
             font-size: 1.1rem;
+            word-wrap: break-word;
         }
 
         .ceo-contact {
@@ -1130,6 +1210,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            min-width: 200px;
         }
 
         .contact-item i {
@@ -1143,12 +1224,14 @@
             color: #2563eb;
             font-size: 1.3rem;
             box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+            flex-shrink: 0;
         }
 
         .contact-item div {
             font-weight: 600;
             font-size: 1.2rem;
             color: #1e293b;
+            word-wrap: break-word;
         }
 
         .contact-item small {
@@ -1156,12 +1239,14 @@
             color: #64748b;
             font-size: 0.9rem;
             font-weight: 400;
+            word-wrap: break-word;
         }
 
         /* ===== WHATSAPP SECTION ===== */
         .whatsapp-section {
             padding: 40px 0;
             text-align: center;
+            width: 100%;
         }
 
         .whatsapp-direct-btn {
@@ -1180,6 +1265,8 @@
             box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
             transition: all 0.3s;
             text-decoration: none;
+            white-space: nowrap;
+            max-width: 100%;
         }
 
         .whatsapp-direct-btn:hover {
@@ -1189,6 +1276,7 @@
 
         .whatsapp-direct-btn i {
             font-size: 1.8rem;
+            flex-shrink: 0;
         }
 
         /* ===== TOAST MESSAGES ===== */
@@ -1254,6 +1342,7 @@
         .toast i {
             font-size: 24px;
             filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+            flex-shrink: 0;
         }
 
         .toast-message {
@@ -1261,6 +1350,7 @@
             font-size: 1rem;
             flex: 1;
             text-align: center;
+            word-wrap: break-word;
         }
 
         .copy-toast {
@@ -1280,6 +1370,7 @@
             gap: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.1);
+            max-width: 90%;
         }
 
         .copy-toast.show {
@@ -1289,6 +1380,7 @@
         .copy-toast i {
             color: #10b981;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         /* ===== ORDER MODAL ===== */
@@ -1345,6 +1437,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: #1e293b;
+            word-wrap: break-word;
         }
 
         .modal-close {
@@ -1360,6 +1453,7 @@
             justify-content: center;
             color: #64748b;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
         .modal-close:hover {
@@ -1381,17 +1475,20 @@
             height: 120px;
             object-fit: cover;
             border-radius: 15px;
+            flex-shrink: 0;
         }
 
         .preview-info h3 {
             font-size: 1.4rem;
             margin-bottom: 8px;
+            word-wrap: break-word;
         }
 
         .preview-info .price {
             color: #2563eb;
             font-weight: 700;
             font-size: 1.6rem;
+            word-wrap: break-word;
         }
 
         .preview-info small {
@@ -1399,6 +1496,7 @@
             color: #64748b;
             margin-top: 8px;
             line-height: 1.5;
+            word-wrap: break-word;
         }
 
         .payment-options {
@@ -1410,6 +1508,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            word-wrap: break-word;
         }
 
         .payment-radio {
@@ -1433,6 +1532,7 @@
             height: 20px;
             margin-right: 15px;
             accent-color: #2563eb;
+            flex-shrink: 0;
         }
 
         .payment-radio-content {
@@ -1440,25 +1540,30 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            min-width: 0; /* Allows content to shrink */
         }
 
         .payment-radio-content i {
             font-size: 24px;
             width: 40px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .payment-radio-content .payment-details {
             flex: 1;
+            min-width: 0; /* Allows text to wrap */
         }
 
         .payment-radio-content .payment-details strong {
             display: block;
             font-size: 1.1rem;
+            word-wrap: break-word;
         }
 
         .payment-radio-content .payment-details small {
             color: #64748b;
+            word-wrap: break-word;
         }
 
         .form-group {
@@ -1471,6 +1576,7 @@
             font-weight: 600;
             color: #1e293b;
             font-size: 1.1rem;
+            word-wrap: break-word;
         }
 
         .form-group label i {
@@ -1508,6 +1614,7 @@
             margin-top: 8px;
             color: #64748b;
             font-size: 0.95rem;
+            word-wrap: break-word;
         }
 
         .submit-btn {
@@ -1530,6 +1637,7 @@
 
         .submit-btn i {
             font-size: 1.4rem;
+            flex-shrink: 0;
         }
 
         .submit-btn:hover {
@@ -1542,6 +1650,7 @@
             margin-top: 25px;
             color: #64748b;
             font-size: 0.95rem;
+            word-wrap: break-word;
         }
 
         /* ===== FOOTER ===== */
@@ -1549,6 +1658,7 @@
             background: #1e293b;
             color: white;
             padding: 60px 0 30px;
+            width: 100%;
         }
 
         .footer-grid {
@@ -1562,6 +1672,7 @@
             color: white;
             margin-bottom: 20px;
             font-size: 1.3rem;
+            word-wrap: break-word;
         }
 
         .footer-col p {
@@ -1571,11 +1682,13 @@
             align-items: center;
             gap: 12px;
             font-size: 1.1rem;
+            word-wrap: break-word;
         }
 
         .footer-col i {
             color: #f59e0b;
             width: 24px;
+            flex-shrink: 0;
         }
 
         .footer-bottom {
@@ -1656,6 +1769,7 @@
             .quick-stats {
                 flex-wrap: wrap;
                 gap: 15px;
+                padding: 15px 20px;
             }
 
             .stat-divider {
@@ -1669,6 +1783,11 @@
             .filter-btns {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .filter-btn {
+                font-size: 1rem;
+                padding: 12px 20px;
             }
 
             .filter-btn.new-filter::after {
@@ -1742,6 +1861,8 @@
             .whatsapp-direct-btn {
                 padding: 15px 30px;
                 font-size: 1.1rem;
+                white-space: normal;
+                word-wrap: break-word;
             }
 
             .suggestions-container {
@@ -1806,8 +1927,8 @@
             }
 
             .filter-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
+                padding: 10px 16px;
+                font-size: 0.95rem;
             }
 
             .filter-btn.new-filter::after {
@@ -1834,6 +1955,10 @@
 
             .number-value {
                 font-size: 1.5rem;
+            }
+
+            .contact-item {
+                min-width: 100%;
             }
         }
     </style>
