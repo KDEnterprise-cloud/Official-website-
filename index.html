@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -446,6 +446,8 @@
             padding: 30px 0;
             background: white;
             border-bottom: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 5;
         }
 
         .filters .container {
@@ -475,6 +477,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            position: relative;
         }
 
         .filter-btn i {
@@ -487,6 +490,90 @@
             border-color: #2563eb;
         }
 
+        /* ===== FIXED NEW FILTER BUTTON - EYE CATCHING ===== */
+        .filter-btn.new-filter {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            position: relative;
+            overflow: visible;
+            animation: pulse 1.8s infinite ease-in-out;
+            box-shadow: 0 0 25px rgba(255, 75, 43, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 32px;
+            transform-origin: center;
+        }
+
+        .filter-btn.new-filter i {
+            color: white;
+            animation: rotate 2.5s infinite ease-in-out;
+        }
+
+        .filter-btn.new-filter::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shimmer 2.5s infinite;
+            pointer-events: none;
+        }
+
+        /* FIXED HOT! BADGE - Now showing properly */
+        .filter-btn.new-filter::after {
+            content: '🔥 HOT!';
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: #f97316;
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.6);
+            animation: bounce 1.2s infinite;
+            letter-spacing: 0.5px;
+            border: 2px solid white;
+            z-index: 10;
+            white-space: nowrap;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 75, 43, 0.5); }
+            50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(255, 75, 43, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 75, 43, 0.5); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
         .sort-select {
             padding: 14px 30px;
             border: 2px solid #e2e8f0;
@@ -496,6 +583,7 @@
             color: #1e293b;
             outline: none;
             cursor: pointer;
+            background: white;
         }
 
         /* ===== LOADING SKELETON ===== */
@@ -562,11 +650,31 @@
             transition: all 0.3s;
             cursor: pointer;
             border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        /* FIXED NEW arrival badge for products - Now visible */
+        .product-card.new-arrival::after {
+            content: '🔥 NEW';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            z-index: 10;
+            box-shadow: 0 6px 15px rgba(255, 75, 43, 0.4);
+            animation: pulse 1.5s infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
         }
 
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
         }
 
         .product-image {
@@ -937,7 +1045,7 @@
             margin-top: 10px;
         }
 
-        /* ===== CEO SECTION (now moved after free delivery) ===== */
+        /* ===== CEO SECTION ===== */
         .ceo-section {
             padding: 80px 0;
             background: white;
@@ -1563,6 +1671,13 @@
                 justify-content: center;
             }
 
+            .filter-btn.new-filter::after {
+                top: -10px;
+                right: -5px;
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+
             .sort-select {
                 width: 100%;
             }
@@ -1693,6 +1808,13 @@
             .filter-btn {
                 padding: 12px 20px;
                 font-size: 1rem;
+            }
+
+            .filter-btn.new-filter::after {
+                top: -8px;
+                right: -5px;
+                font-size: 10px;
+                padding: 4px 8px;
             }
 
             .ceo-name {
@@ -1828,6 +1950,10 @@
                 <button class="filter-btn" data-category="furniture" onclick="filterProducts('furniture')">
                     <i class="fas fa-couch"></i> Furniture
                 </button>
+                <!-- FIXED NEW FILTER - Now with proper HOT! badge -->
+                <button class="filter-btn new-filter" data-category="new" onclick="filterProducts('new')">
+                    <i class="fas fa-fire"></i> New Arrivals
+                </button>
             </div>
             <select class="sort-select" id="sortSelect" onchange="sortProducts(this.value)">
                 <option value="default">Sort by: Featured</option>
@@ -1957,7 +2083,7 @@
         </div>
     </section>
 
-    <!-- CEO SECTION (moved below free delivery) -->
+    <!-- CEO SECTION -->
     <section class="ceo-section" id="ceo">
         <div class="container">
             <div class="ceo-wrapper">
@@ -2184,8 +2310,14 @@
                 const data = await response.json();
                 
                 if (data && data.length > 0) {
-                    allProducts = data.map(product => {
+                    // ===== IMPORTANT: AUTOMATIC LAST 10 PRODUCTS AS NEW =====
+                    allProducts = data.map((product, index, array) => {
                         const category = (product.category || '').toLowerCase().trim();
+                        
+                        // Calculate if this is among the last 10 products
+                        const totalProducts = array.length;
+                        const productPosition = index + 1; // 1-based position (first product is position 1)
+                        const isLastTen = productPosition > (totalProducts - 10);
                         
                         return {
                             id: product.id,
@@ -2194,7 +2326,11 @@
                             category: category,
                             image: `Images/${category}/${product.imageFile || 'no-image.jpg'}`,
                             stock: product.stock || 'In Stock',
-                            description: product.description || 'No description available'
+                            description: product.description || 'No description available',
+                            // Mark as new if:
+                            // 1. It's in the last 10 products (automatic), OR
+                            // 2. Sheet explicitly says TRUE (manual override)
+                            isNew: isLastTen || product.isNew === 'TRUE' || product.isNew === true
                         };
                     });
                     
@@ -2231,6 +2367,7 @@
         function updateFilterButtons() {
             const electronicsCount = allProducts.filter(p => p.category === 'electronics').length;
             const furnitureCount = allProducts.filter(p => p.category === 'furniture').length;
+            const newCount = allProducts.filter(p => p.isNew).length;
             
             document.querySelector('.filter-btn[data-category="electronics"]').innerHTML = 
                 `<i class="fas fa-mobile-alt"></i> Electronics (${electronicsCount})`;
@@ -2238,6 +2375,12 @@
                 `<i class="fas fa-couch"></i> Furniture (${furnitureCount})`;
             document.querySelector('.filter-btn[data-category="all"]').innerHTML = 
                 `<i class="fas fa-th-large"></i> All Products (${allProducts.length})`;
+            
+            // Update new filter button with count
+            const newFilterBtn = document.querySelector('.filter-btn[data-category="new"]');
+            if (newFilterBtn) {
+                newFilterBtn.innerHTML = `<i class="fas fa-fire"></i> New Arrivals (${newCount})`;
+            }
         }
 
         // ===== SHOW LOADING SKELETONS =====
@@ -2284,7 +2427,7 @@
                 grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px;"><h3>No products match your filters</h3></div>';
             } else {
                 grid.innerHTML = productsToShow.map(product => `
-                    <div class="product-card" onclick="openProductDetails(${product.id})">
+                    <div class="product-card ${product.isNew ? 'new-arrival' : ''}" onclick="openProductDetails(${product.id})">
                         <img src="${product.image}" 
                              alt="${product.name}" 
                              class="product-image" 
@@ -2367,7 +2510,9 @@
             currentPage = 1;
             applyAllFilters();
             
-            const categoryName = category === 'all' ? 'All Products' : category.charAt(0).toUpperCase() + category.slice(1);
+            let categoryName = category === 'all' ? 'All Products' : 
+                               category === 'new' ? '🔥 New Arrivals' : 
+                               category.charAt(0).toUpperCase() + category.slice(1);
             showToast(`📁 Showing: ${categoryName}`, 'info');
         }
 
@@ -2402,10 +2547,16 @@
         function applyAllFilters() {
             let results = [...allProducts];
             
+            // Apply category filter
             if (currentCategory !== 'all') {
-                results = results.filter(p => p.category === currentCategory);
+                if (currentCategory === 'new') {
+                    results = results.filter(p => p.isNew === true);
+                } else {
+                    results = results.filter(p => p.category === currentCategory);
+                }
             }
             
+            // Apply search filter
             if (currentSearch) {
                 results = results.filter(p => 
                     p.name.toLowerCase().includes(currentSearch) ||
@@ -2413,6 +2564,7 @@
                 );
             }
             
+            // Apply sorting
             if (currentSort === 'price-low') {
                 results.sort((a, b) => Number(a.price) - Number(b.price));
             } else if (currentSort === 'price-high') {
@@ -2480,10 +2632,10 @@
                 `;
             } else {
                 suggestionsList.innerHTML = matches.map(product => `
-                    <div class="suggestion-item" data-product-name="${product.name}" data-product-id="${product.id}">
+                    <div class="suggestion-item ${product.isNew ? 'new-arrival' : ''}" data-product-name="${product.name}" data-product-id="${product.id}">
                         <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/50x50?text=${product.category}'">
                         <div class="suggestion-info">
-                            <div class="suggestion-name">${product.name}</div>
+                            <div class="suggestion-name">${product.name} ${product.isNew ? '🔥' : ''}</div>
                             <div class="suggestion-category">
                                 <i class="fas fa-tag"></i> ${product.category}
                             </div>
@@ -2528,7 +2680,7 @@
             document.getElementById('orderProductPreview').innerHTML = `
                 <img src="${product.image}" alt="${product.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/120x120?text=Image'">
                 <div class="preview-info">
-                    <h3>${product.name}</h3>
+                    <h3>${product.name} ${product.isNew ? '🔥' : ''}</h3>
                     <p class="price">TSh ${Number(product.price).toLocaleString()}</p>
                     <small>${product.description || ''}</small>
                 </div>
@@ -2715,4 +2867,4 @@
         };
     </script>
 </body>
-</html>              
+</html>
