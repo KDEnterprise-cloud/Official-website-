@@ -942,7 +942,7 @@
             border-color: #2563eb;
         }
 
-        /* ===== PAYMENT METHODS SECTION (unchanged) ===== */
+        /* ===== PAYMENT METHODS SECTION ===== */
         .payment-section {
             padding: 60px 0 30px;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -1357,7 +1357,17 @@
             flex-shrink: 0;
         }
 
-        /* ===== TOAST / MODAL / FOOTER (kept exactly as in original) ===== */
+        /* ===== BUTTON LOADING SPINNER STYLES ===== */
+        .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ===== TOAST MESSAGES ===== */
         .toast {
             position: fixed;
             top: 50%;
@@ -1765,7 +1775,7 @@
             font-size: 1.2rem;
         }
 
-        /* ===== MOBILE RESPONSIVE (preserved) ===== */
+        /* ===== MOBILE RESPONSIVE ===== */
         @media (max-width: 768px) {
             .menu-btn {
                 display: block;
@@ -2072,7 +2082,7 @@
         </div>
     </section>
 
-    <!-- Products Grid (unchanged) -->
+    <!-- Products Grid -->
     <section class="products-section" id="products">
         <div class="container">
             <h2 class="section-title"><i class="fas fa-fire" style="color: #f59e0b;"></i> Our Products</h2>
@@ -2086,7 +2096,7 @@
         </div>
     </section>
 
-    <!-- PAYMENT METHODS SECTION (unchanged) -->
+    <!-- PAYMENT METHODS SECTION -->
     <section class="payment-section" id="payment">
         <div class="container">
             <h2 class="payment-title"><i class="fas fa-credit-card" style="color: #2563eb;"></i> Payment Methods</h2>
@@ -2142,7 +2152,7 @@
         </div>
     </section>
 
-    <!-- FREE DELIVERY SECTION (unchanged) -->
+    <!-- FREE DELIVERY SECTION -->
     <section class="delivery-section">
         <div class="delivery-content">
             <div class="delivery-icon"><i class="fas fa-truck"></i></div>
@@ -2195,14 +2205,14 @@
         </div>
     </section>
 
-    <!-- WHATSAPP DIRECT CHAT SECTION (unchanged) -->
+    <!-- WHATSAPP DIRECT CHAT SECTION -->
     <section class="whatsapp-section" id="contact">
         <div class="container">
             <a href="https://wa.me/255748814017?text=Hello%20KD%20Enterprise!%20I%20would%20like%20to%20inquire%20about%20your%20products." class="whatsapp-direct-btn" target="_blank"><i class="fab fa-whatsapp"></i> Chat with us on WhatsApp</a>
         </div>
     </section>
 
-    <!-- Order Modal (unchanged) -->
+    <!-- Order Modal -->
     <div class="modal-overlay" id="orderModal">
         <div class="modal">
             <div class="modal-header"><h2><i class="fas fa-shopping-cart"></i> Place Order</h2><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
@@ -2499,14 +2509,88 @@
             setTimeout(()=>{ toast.classList.remove('show'); setTimeout(()=>toast.remove(),300); },2000);
         }
 
+        // ===== ORDER FORM WITH LOADING STATE =====
         document.getElementById('orderForm').onsubmit = async function(e) {
             e.preventDefault();
+            
             const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const quantity = document.getElementById('quantity').value;
+            const address = document.getElementById('address').value;
+            const payment = document.querySelector('input[name="payment"]:checked').value;
+            
+            let paymentMethod = '';
+            if (payment === 'cash') paymentMethod = 'Cash on Delivery';
+            else if (payment === 'mix') paymentMethod = 'Mix by Yas';
+            else if (payment === 'crdb') paymentMethod = 'CRDB Bank';
+            
             if (window.currentProduct) {
-                showToast(`👑 Thank you ${name}! We'll call you to confirm.`,'success');
+                // Get local date and time
+                const now = new Date();
+                const localTimestamp = now.toLocaleString('en-US', { 
+                    timeZone: 'Africa/Dar_es_Salaam',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                }).replace(/(\d+)\/(\d+)\/(\d+),/, '$3-$1-$2');
+                
+                const isoString = now.toISOString();
+                
+                const orderData = {
+                    action: 'addOrder',
+                    orderId: 'ORD' + Date.now(),
+                    timestamp: localTimestamp,
+                    isoTimestamp: isoString,
+                    name: name,
+                    phone: phone,
+                    email: document.getElementById('customerEmail').value || '',
+                    productId: window.currentProduct.id,
+                    productName: window.currentProduct.name,
+                    quantity: quantity,
+                    total: Number(window.currentProduct.price) * Number(quantity),
+                    address: address || 'To be confirmed',
+                    paymentMethod: paymentMethod
+                };
+                
+                // Get the submit button
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                
+                // Show loading state
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                btn.disabled = true;
+                
+                try {
+                    // Send to Google Sheets
+                    await fetch(scriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(orderData)
+                    });
+                    
+                    // Show success message
+                    showToast(`👑 Thank you ${name}! We shall call you to confirm the order.`, 'success');
+                    
+                } catch (error) {
+                    // Fallback: save locally
+                    showToast('✅ Order saved locally! We\'ll call you soon.', 'success');
+                    const orders = JSON.parse(localStorage.getItem('kdOrders') || '[]');
+                    orders.push(orderData);
+                    localStorage.setItem('kdOrders', JSON.stringify(orders));
+                }
+                
+                // Close modal and reset form
                 document.getElementById('orderModal').classList.remove('active');
                 this.reset();
                 document.querySelector('input[name="payment"][value="cash"]').checked = true;
+                
+                // Restore button
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         };
 
