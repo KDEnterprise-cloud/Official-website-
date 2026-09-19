@@ -8,7 +8,7 @@ class KDECommerce {
         this.currentProducts = [];
         this.cart = [];
         this.currentProduct = null;
-        this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'; // REPLACE WITH YOUR URL
+        this.GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6habPXt-Tsoiri7omP8PqcxCvs_xahvmOzRCE--tbafRdQqyAYKoQXXDFyomg_t5JYw/exec'; // REPLACE WITH YOUR URL
         
         this.init();
     }
